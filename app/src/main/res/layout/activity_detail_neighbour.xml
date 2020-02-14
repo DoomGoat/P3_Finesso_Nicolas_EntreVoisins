@@ -1,0 +1,145 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D1D1D1"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.neighbour_list.DetailNeighbourActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/detail_avatar"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/detail_image_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="-50dp"
+                android:gravity="center"
+                android:text="TextView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/detail_favorite_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="-10dp"
+                android:layout_marginEnd="10dp"
+                android:baselineAligned="false"
+                android:clickable="true"
+                app:backgroundTint="#EFEFF1"
+                app:srcCompat="@drawable/ic_star_white_24dp" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/detail_info_cardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="-20dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/detail_info_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <TextView
+                    android:id="@+id/detail_info_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="55dp"
+                    android:drawableLeft="@drawable/ic_location_on_withe_24dp"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/detail_info_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="90dp"
+                    android:drawableLeft="@drawable/ic_phone_withe_24dp"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/detail_info_facebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="125dp"
+                    android:layout_marginBottom="10dp"
+                    android:drawableLeft="@drawable/ic_language_withe_24dp"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:text="TextView" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/detail_about_neighbour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:id="@+id/detail_about_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="About me"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <TextView
+                    android:id="@+id/detail_about_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="TextView" />
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/detail_previous_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back_withe_30dp" />
+
+</android.support.constraint.ConstraintLayout>

@@ -90,4 +90,6 @@ public class NeighbourFragment extends Fragment {
         mApiService.deleteNeighbour(event.neighbour);
         initList();
     }
+
+
 }
