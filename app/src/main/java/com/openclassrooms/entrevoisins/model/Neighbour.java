@@ -1,5 +1,8 @@
 package com.openclassrooms.entrevoisins.model;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import java.util.Objects;
 
 /**
@@ -24,6 +27,8 @@ public class Neighbour {
 
     /** About me */
     private String aboutMe;
+
+
 
     /**
      * Constructor
@@ -100,5 +105,26 @@ public class Neighbour {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public void setExtras(Neighbour neighbour, Intent intent) {
+        Bundle extras = new Bundle();
+        extras.putLong("USER_ID", neighbour.getId());
+        extras.putString("USER_NAME", neighbour.getName());
+        extras.putString("USER_AVATAR", neighbour.getAvatarUrl());
+        extras.putString("USER_ADDRESS", neighbour.getAddress());
+        extras.putString("USER_PHONE", neighbour.getPhoneNumber());
+        extras.putString("USER_ABOUT", neighbour.getAboutMe());
+        intent.putExtras(extras);
+    }
+
+    public void getExtras(Neighbour neighbour, Intent intent) {
+        Bundle extras = intent.getExtras();
+        neighbour.setId(extras.getLong("USER_ID"));
+        neighbour.setName(extras.getString("USER_NAME"));
+        neighbour.setAvatarUrl(extras.getString("USER_AVATAR"));
+        neighbour.setAddress(extras.getString("USER_ADDRESS"));
+        neighbour.setPhoneNumber(extras.getString("USER_PHONE"));
+        neighbour.setAboutMe(extras.getString("USER_ABOUT"));
     }
 }

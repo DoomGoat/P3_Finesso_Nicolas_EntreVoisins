@@ -66,10 +66,11 @@ public class ListNeighbourActivity extends AppCompatActivity {
      * Fired if the user clicks on a neighbour fragment
      * @param event
     */
-
     @Subscribe
     public void onClickNeighbour(ClickNeighbourEvent event) {
+
         Intent detailActivityIntent = new Intent(ListNeighbourActivity.this, DetailNeighbourActivity.class);
+        event.neighbour.setExtras(event.neighbour, detailActivityIntent);
         startActivity(detailActivityIntent);
     }
 
