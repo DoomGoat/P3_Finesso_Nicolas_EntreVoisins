@@ -33,8 +33,14 @@ public class NeighbourFragment extends Fragment {
      * Create and return a new instance
      * @return @{@link NeighbourFragment}
      */
-    public static NeighbourFragment newInstance() {
+    public static NeighbourFragment newInstance(boolean isFavorite) {
         NeighbourFragment fragment = new NeighbourFragment();
+
+        if (isFavorite){
+            Bundle bundle =new Bundle();
+            bundle.putBoolean("IS_FAVORITE", isFavorite);
+            fragment.setArguments(bundle);
+        }
         return fragment;
     }
 
@@ -52,6 +58,11 @@ public class NeighbourFragment extends Fragment {
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        Bundle bundle = this.getArguments();
+
+        if (bundle != null){
+            boolean isFavorite = bundle.getBoolean("IS_FAVORITE");
+        }
         return view;
     }
 

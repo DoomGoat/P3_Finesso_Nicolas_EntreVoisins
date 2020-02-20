@@ -118,13 +118,14 @@ public class Neighbour {
         intent.putExtras(extras);
     }
 
-    public void getExtras(Neighbour neighbour, Intent intent) {
+    static public Neighbour getExtras(Intent intent) {
         Bundle extras = intent.getExtras();
-        neighbour.setId(extras.getLong("USER_ID"));
-        neighbour.setName(extras.getString("USER_NAME"));
-        neighbour.setAvatarUrl(extras.getString("USER_AVATAR"));
-        neighbour.setAddress(extras.getString("USER_ADDRESS"));
-        neighbour.setPhoneNumber(extras.getString("USER_PHONE"));
-        neighbour.setAboutMe(extras.getString("USER_ABOUT"));
+        Neighbour neighbour = new Neighbour(extras.getLong("USER_ID"),
+                extras.getString("USER_NAME"),
+                extras.getString("USER_AVATAR"),
+                extras.getString("USER_ADDRESS"),
+                extras.getString("USER_PHONE"),
+                extras.getString("USER_ABOUT"));
+        return neighbour;
     }
 }

@@ -35,10 +35,6 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_neighbour);
 
-        mCurrentNeighbour = new Neighbour(1,"","", "", "", "");
-        mCurrentNeighbour.getExtras(mCurrentNeighbour, getIntent());
-
-
         mAvatarImageView = findViewById(R.id.detail_avatar);
         mImageNameTextView = findViewById(R.id.detail_image_name);
         mInfoNameTextView = findViewById(R.id.detail_info_name);
@@ -50,6 +46,7 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         mPreviousButton = findViewById(R.id.detail_previous_button);
         mFavoriteButton = findViewById(R.id.detail_favorite_button);
 
+        mCurrentNeighbour = Neighbour.getExtras(getIntent());
         this.displayDetails(mCurrentNeighbour);
 
         mPreviousButton.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +70,7 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         mInfoNameTextView.setText(neighbour.getName());
         mAddressTextView.setText(neighbour.getAddress());
         mPhoneTextView.setText(neighbour.getPhoneNumber());
-        mMediaTextView.setText("www.facebook.com/"+neighbour.getName()); // A CORRIGER !!
+        mMediaTextView.setText(getString(R.string.media,neighbour.getName()));
         mAboutMeTitleTextView.setText(R.string.about_me);
         mAboutMeDescriptionTextView.setText(neighbour.getAboutMe());
         Glide.with(mAvatarImageView.getContext())
