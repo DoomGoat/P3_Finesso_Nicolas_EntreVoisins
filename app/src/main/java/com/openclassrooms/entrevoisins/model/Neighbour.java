@@ -28,6 +28,9 @@ public class Neighbour {
     /** About me */
     private String aboutMe;
 
+    /** Favorite */
+    private boolean favorite;
+
 
 
     /**
@@ -37,13 +40,14 @@ public class Neighbour {
      * @param avatarUrl
      */
     public Neighbour(long id, String name, String avatarUrl, String address,
-                     String phoneNumber, String aboutMe) {
+                     String phoneNumber, String aboutMe, boolean favorite) {
         this.id = id;
         this.name = name;
         this.avatarUrl = avatarUrl;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.aboutMe = aboutMe;
+        this.favorite = favorite;
     }
 
     public long getId() {
@@ -94,6 +98,14 @@ public class Neighbour {
         this.aboutMe = aboutMe;
     }
 
+    public boolean getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -115,6 +127,7 @@ public class Neighbour {
         extras.putString("USER_ADDRESS", neighbour.getAddress());
         extras.putString("USER_PHONE", neighbour.getPhoneNumber());
         extras.putString("USER_ABOUT", neighbour.getAboutMe());
+        extras.putBoolean("USER_FAVORITE", neighbour.getFavorite());
         intent.putExtras(extras);
     }
 
@@ -125,7 +138,8 @@ public class Neighbour {
                 extras.getString("USER_AVATAR"),
                 extras.getString("USER_ADDRESS"),
                 extras.getString("USER_PHONE"),
-                extras.getString("USER_ABOUT"));
+                extras.getString("USER_ABOUT"),
+                extras.getBoolean("USER_FAVORITE"));
         return neighbour;
     }
 }

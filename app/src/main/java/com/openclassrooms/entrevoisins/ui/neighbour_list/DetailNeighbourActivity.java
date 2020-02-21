@@ -10,9 +10,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
+import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
-import java.util.List;
 
 public class DetailNeighbourActivity extends AppCompatActivity {
 
@@ -27,13 +28,14 @@ public class DetailNeighbourActivity extends AppCompatActivity {
     ImageButton mPreviousButton;
     FloatingActionButton mFavoriteButton;
 
-    Neighbour mCurrentNeighbour;
-    List<Neighbour> mFavoriteNeighbours;
+    private NeighbourApiService mApiService;
+    private Neighbour mCurrentNeighbour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_neighbour);
+        mApiService = DI.getNeighbourApiService();
 
         mAvatarImageView = findViewById(R.id.detail_avatar);
         mImageNameTextView = findViewById(R.id.detail_image_name);
@@ -59,24 +61,25 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         mFavoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //mFavoriteNeighbours = mFavoriteNeighbours.add(mCurrentNeighbour);
+                if (mCurrentNeighbour.getFavorite()){
+                    mApiService.unmakeFavorite(mCurrentNeighbour);
+                }
+                mApiService.makeFavorite(mCurrentNeighbour);
             }
         });
     }
 
-    private void displayDetails(final Neighbour neighbour){
+    private void displayDetails(final Neighbour neighbour) {
 
         mImageNameTextView.setText(neighbour.getName());
         mInfoNameTextView.setText(neighbour.getName());
         mAddressTextView.setText(neighbour.getAddress());
         mPhoneTextView.setText(neighbour.getPhoneNumber());
-        mMediaTextView.setText(getString(R.string.media,neighbour.getName()));
+        mMediaTextView.setText(getString(R.string.media, neighbour.getName()));
         mAboutMeTitleTextView.setText(R.string.about_me);
         mAboutMeDescriptionTextView.setText(neighbour.getAboutMe());
         Glide.with(mAvatarImageView.getContext())
                 .load(neighbour.getAvatarUrl())
                 .into(mAvatarImageView);
     }
-
-
 }

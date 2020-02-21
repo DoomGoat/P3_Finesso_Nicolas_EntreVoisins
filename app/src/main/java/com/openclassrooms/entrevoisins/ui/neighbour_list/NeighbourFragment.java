@@ -37,7 +37,7 @@ public class NeighbourFragment extends Fragment {
         NeighbourFragment fragment = new NeighbourFragment();
 
         if (isFavorite){
-            Bundle bundle =new Bundle();
+            Bundle bundle = new Bundle();
             bundle.putBoolean("IS_FAVORITE", isFavorite);
             fragment.setArguments(bundle);
         }
@@ -58,11 +58,7 @@ public class NeighbourFragment extends Fragment {
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        Bundle bundle = this.getArguments();
 
-        if (bundle != null){
-            boolean isFavorite = bundle.getBoolean("IS_FAVORITE");
-        }
         return view;
     }
 
@@ -70,13 +66,20 @@ public class NeighbourFragment extends Fragment {
      * Init the List of neighbours
      */
     private void initList() {
-        mNeighbours = mApiService.getNeighbours();
+        Bundle bundle = this.getArguments();
+
+        if (bundle != null && bundle.getBoolean("IS_FAVORITE")){
+            mNeighbours = mApiService.getFavoritesNeighbours();
+        }else {
+            mNeighbours = mApiService.getNeighbours();
+        }
         mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
         initList();
     }
 

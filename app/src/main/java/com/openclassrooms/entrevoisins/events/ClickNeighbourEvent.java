@@ -5,7 +5,7 @@ import com.openclassrooms.entrevoisins.model.Neighbour;
 public class ClickNeighbourEvent {
 
     /**
-     * Neighbour to delete
+     * Neighbour clicked
      */
     public Neighbour neighbour;
 
