@@ -37,4 +37,6 @@ public interface NeighbourApiService {
      * @return {@link List}
      */
     List<Neighbour> getFavoritesNeighbours();
+
+    void adjustNeighbourID();
 }

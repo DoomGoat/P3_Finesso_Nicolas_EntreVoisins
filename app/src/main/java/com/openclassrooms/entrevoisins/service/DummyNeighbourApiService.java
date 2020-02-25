@@ -62,4 +62,12 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
         }
         return favoritesNeighbours;
     }
+
+    @Override
+    public void adjustNeighbourID() {
+        for (int i=0; i<neighbours.size();i++){
+            neighbours.get(i).setId(i+1);
+        }
+
+    }
 }

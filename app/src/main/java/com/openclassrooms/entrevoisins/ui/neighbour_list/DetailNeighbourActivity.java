@@ -61,17 +61,20 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         mFavoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mCurrentNeighbour.getFavorite()){
+                if (mApiService.getNeighbours().get((int)mCurrentNeighbour.getId()-1).getFavorite()){
+                    mFavoriteButton.setImageResource(R.drawable.ic_star_border_white_24dp);
                     mApiService.unmakeFavorite(mCurrentNeighbour);
+                }else{
+                    mApiService.makeFavorite(mCurrentNeighbour);
+                    mFavoriteButton.setImageResource(R.drawable.ic_star_white_24dp);
                 }
-                mApiService.makeFavorite(mCurrentNeighbour);
             }
         });
     }
 
     private void displayDetails(final Neighbour neighbour) {
 
-        mImageNameTextView.setText(neighbour.getName());
+        mImageNameTextView.setText(neighbour.getName()+" "+neighbour.getId());
         mInfoNameTextView.setText(neighbour.getName());
         mAddressTextView.setText(neighbour.getAddress());
         mPhoneTextView.setText(neighbour.getPhoneNumber());
@@ -81,5 +84,6 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         Glide.with(mAvatarImageView.getContext())
                 .load(neighbour.getAvatarUrl())
                 .into(mAvatarImageView);
+        if (mCurrentNeighbour.getFavorite()) mFavoriteButton.setImageResource(R.drawable.ic_star_white_24dp);
     }
 }
