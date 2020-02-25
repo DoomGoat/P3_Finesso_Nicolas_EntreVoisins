@@ -43,24 +43,29 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     @Override
     public void makeFavorite(Neighbour neighbour) {
         neighbour.setFavorite(true);
-        for (int i=0; i<neighbours.size() && neighbours.get(i).getId() != neighbour.getId(); i++){
-            if(neighbours.get(i).getId() == neighbour.getId()) neighbours.set(i, neighbour);
+        for (int i=0; i<neighbours.size(); i++){
+            if(neighbours.get(i).getId() == neighbour.getId()){
+                neighbours.set(i, neighbour);
+                break;
+            }
         }
     }
 
     @Override
     public void unmakeFavorite(Neighbour neighbour) {
         neighbour.setFavorite(false);
-        for (int i=0; i<neighbours.size() && neighbours.get(i).getId() != neighbour.getId(); i++){
-            if(neighbours.get(i).getId() == neighbour.getId())
+        for (int i=0; i<neighbours.size(); i++){
+            if(neighbours.get(i).getId() == neighbour.getId()){
                 neighbours.set(i, neighbour);
+                break;
+            }
         }
     }
 
     @Override
     public List<Neighbour> getFavoritesNeighbours() {
         List<Neighbour> favoritesNeighbours = new ArrayList<>();
-        for (int i=0; i<neighbours.size();i++){
+        for (int i=0; i<neighbours.size(); i++){
             if (neighbours.get(i).getFavorite()){
                 favoritesNeighbours.add(neighbours.get(i));
             }

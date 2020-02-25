@@ -74,7 +74,7 @@ public class DetailNeighbourActivity extends AppCompatActivity {
 
     private void displayDetails(final Neighbour neighbour) {
 
-        mImageNameTextView.setText(neighbour.getName()+" "+neighbour.getId());
+        mImageNameTextView.setText(neighbour.getName());
         mInfoNameTextView.setText(neighbour.getName());
         mAddressTextView.setText(neighbour.getAddress());
         mPhoneTextView.setText(neighbour.getPhoneNumber());
