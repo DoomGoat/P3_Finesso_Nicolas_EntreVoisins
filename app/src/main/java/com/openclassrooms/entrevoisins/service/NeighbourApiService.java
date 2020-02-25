@@ -38,5 +38,4 @@ public interface NeighbourApiService {
      */
     List<Neighbour> getFavoritesNeighbours();
 
-    void adjustNeighbourID();
 }

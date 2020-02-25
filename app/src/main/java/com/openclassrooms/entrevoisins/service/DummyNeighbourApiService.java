@@ -43,13 +43,18 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     @Override
     public void makeFavorite(Neighbour neighbour) {
         neighbour.setFavorite(true);
-        neighbours.set((int)neighbour.getId()-1, neighbour);
+        for (int i=0; i<neighbours.size() && neighbours.get(i).getId() != neighbour.getId(); i++){
+            if(neighbours.get(i).getId() == neighbour.getId()) neighbours.set(i, neighbour);
+        }
     }
 
     @Override
     public void unmakeFavorite(Neighbour neighbour) {
         neighbour.setFavorite(false);
-        neighbours.set((int)neighbour.getId()-1, neighbour);
+        for (int i=0; i<neighbours.size() && neighbours.get(i).getId() != neighbour.getId(); i++){
+            if(neighbours.get(i).getId() == neighbour.getId())
+                neighbours.set(i, neighbour);
+        }
     }
 
     @Override
@@ -61,13 +66,5 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
             }
         }
         return favoritesNeighbours;
-    }
-
-    @Override
-    public void adjustNeighbourID() {
-        for (int i=0; i<neighbours.size();i++){
-            neighbours.get(i).setId(i+1);
-        }
-
     }
 }

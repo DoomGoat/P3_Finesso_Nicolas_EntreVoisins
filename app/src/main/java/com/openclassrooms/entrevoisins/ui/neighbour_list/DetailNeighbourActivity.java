@@ -61,7 +61,7 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         mFavoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mApiService.getNeighbours().get((int)mCurrentNeighbour.getId()-1).getFavorite()){
+                if (mCurrentNeighbour.getFavorite()){
                     mFavoriteButton.setImageResource(R.drawable.ic_star_border_white_24dp);
                     mApiService.unmakeFavorite(mCurrentNeighbour);
                 }else{

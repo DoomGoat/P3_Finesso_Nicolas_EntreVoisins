@@ -55,7 +55,6 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
             @Override
             public void onClick(View v) {
                 EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
-                mApiService.adjustNeighbourID();
             }
         });
 
@@ -63,7 +62,6 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
             @Override
             public void onClick(View view) {
                 EventBus.getDefault().post(new ClickNeighbourEvent(neighbour));
-                mApiService.adjustNeighbourID();
             }
         });
     }
