@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
@@ -32,7 +33,7 @@ public class NeighbourServiceTest {
     public void getNeighboursWithSuccess() {
         List<Neighbour> neighbours = service.getNeighbours();
         List<Neighbour> expectedNeighbours = DummyNeighbourGenerator.DUMMY_NEIGHBOURS;
-        assertThat(neighbours, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedNeighbours.toArray()));
+        assertThat(neighbours, IsIterableContainingInAnyOrder.containsInAnyOrder(Objects.requireNonNull(expectedNeighbours.toArray())));
     }
 
     @Test
@@ -71,6 +72,6 @@ public class NeighbourServiceTest {
             favoriteNeighbours.get(i).setFavorite(true);
         }
         List<Neighbour> expectedFavoriteNeighbours = DummyNeighbourGenerator.DUMMY_FAVORITE_NEIGHBOURS;
-        assertThat(favoriteNeighbours, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedFavoriteNeighbours.toArray()));
+        assertThat(favoriteNeighbours, IsIterableContainingInAnyOrder.containsInAnyOrder(Objects.requireNonNull(expectedFavoriteNeighbours.toArray())));
     }
 }
