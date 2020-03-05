@@ -133,13 +133,13 @@ public class Neighbour {
 
     static public Neighbour getExtras(Intent intent) {
         Bundle extras = intent.getExtras();
-        Neighbour neighbour = new Neighbour(extras.getLong("USER_ID"),
+        assert extras != null;
+        return new Neighbour(extras.getLong("USER_ID"),
                 extras.getString("USER_NAME"),
                 extras.getString("USER_AVATAR"),
                 extras.getString("USER_ADDRESS"),
                 extras.getString("USER_PHONE"),
                 extras.getString("USER_ABOUT"),
                 extras.getBoolean("USER_FAVORITE"));
-        return neighbour;
     }
 }

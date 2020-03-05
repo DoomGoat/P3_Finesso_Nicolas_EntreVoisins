@@ -1,11 +1,12 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detail_neighbour"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D1D1D1"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context=".ui.neighbour_list.DetailNeighbourActivity">
 
 
@@ -66,8 +67,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:gravity="center"
-                    tools:text="Name"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    tools:text="Name" />
 
                 <TextView
                     android:id="@+id/detail_info_address"
@@ -117,8 +118,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:gravity="center"
-                    tools:text="About me"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    tools:text="About me" />
 
                 <TextView
                     android:id="@+id/detail_about_text"

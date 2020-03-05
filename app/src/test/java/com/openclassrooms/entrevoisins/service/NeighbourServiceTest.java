@@ -60,18 +60,19 @@ public class NeighbourServiceTest {
     @Test
     public void unmakeNeighbourFavoriteWithSuccess() {
         Neighbour neighbourToUnFavorite = service.getNeighbours().get(0);
-        neighbourToUnFavorite.setFavorite(true);
+        service.makeFavorite(neighbourToUnFavorite);
+        assertTrue(neighbourToUnFavorite.getFavorite());
         service.unmakeFavorite(neighbourToUnFavorite);
         assertFalse(service.getNeighbours().get(0).getFavorite());
     }
 
     @Test
     public void getFavoriteNeighboursWithSuccess() {
-        List<Neighbour> favoriteNeighbours = service.getNeighbours();
-        for (int i = 0; i < favoriteNeighbours.size(); i++) {
-            favoriteNeighbours.get(i).setFavorite(true);
+        List<Neighbour> neighbours = service.getNeighbours();
+        for (int i = 0; i < neighbours.size(); i++) {
+            service.makeFavorite(neighbours.get(i));
         }
-        List<Neighbour> expectedFavoriteNeighbours = DummyNeighbourGenerator.DUMMY_FAVORITE_NEIGHBOURS;
-        assertThat(favoriteNeighbours, IsIterableContainingInAnyOrder.containsInAnyOrder(Objects.requireNonNull(expectedFavoriteNeighbours.toArray())));
+        List<Neighbour> favoriteNeighbours = service.getFavoritesNeighbours();
+        assertTrue(favoriteNeighbours.size()== neighbours.size());
     }
 }
