@@ -5,20 +5,16 @@ import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.contrib.ViewPagerActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-
-
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
 import com.openclassrooms.entrevoisins.utils.ClickNeighbourViewAction;
 import com.openclassrooms.entrevoisins.utils.DeleteViewAction;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -81,6 +77,9 @@ public class NeighboursListTest {
         onView(allOf (withId(R.id.list_neighbours), isDisplayed())).check(withItemCount(ITEMS_COUNT-1));
     }
 
+    /**
+     * When we click an item, the detailActivity is launch
+     */
     @Test
     public void myNeighboursList_onNeighbourClick_shouldOpenDetailActivity() {
         // Given : We click on the element at position 2
@@ -91,15 +90,22 @@ public class NeighboursListTest {
         onView(withId(R.id.detail_neighbour)).check(matches(isDisplayed()));
     }
 
+    /**
+     * When the detailActivity is launch, the item detail name is shown
+     */
     @Test
     public void myNeighboursList_onNeighbourDetailOpen_shouldDisplayNeighbourName() {
         // When perform a click on a neighbour
         onView(allOf (withId(R.id.list_neighbours), isDisplayed()))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(positionTest, new ClickNeighbourViewAction()));
-        // Then : the name field is the name of the neighbour at position 2
-        onView(withId(R.id.detail_image_name)).check(matches(withText(service.getNeighbours().get(positionTest).getName())));
+        String neighbourName = service.getNeighbours().get(positionTest).getName();
+        // Then : the name field is the name of the neighbour
+        onView(withId(R.id.detail_image_name)).check(matches(withText(neighbourName)));
     }
 
+    /**
+     * When we look in the favorite Tab, only favorite items are shown
+     */
     @Test
     public void myNeighboursList_favoriteList_shouldOnlyDisplayFavoritesNeighbours() {
         // When perform scroll on favorite Tab
@@ -107,5 +113,31 @@ public class NeighboursListTest {
 
         // Then : the only neighbour in the list is the favorite
         onView(allOf (withId(R.id.list_neighbours), isDisplayed())).check(withItemCount(service.getFavoritesNeighbours().size()));
+    }
+
+    /**
+     * When we click on the favorite button of an item, the item is shown in the favorite Tab
+     * When we click again on the favorite button, the item is no more shown in the favorite Tab
+     */
+    @Test
+    public void myNeighboursList_detailNeighbourButton_shouldChangeIconAndSwitchFavoriteState() {
+        // Perform a click on a neighbour
+        onView(allOf (withId(R.id.list_neighbours), isDisplayed()))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(positionTest, new ClickNeighbourViewAction()));
+        // Perform a click on favorite button
+        onView(withId(R.id.detail_favorite_button)).perform(click());
+        // Perform a click on the back button and scroll to the favorite list
+        onView(withId(R.id.detail_previous_button)).perform(click());
+        onView(withId(R.id.container)).perform(ViewPagerActions.scrollRight());
+        // Then : the only neighbour in the list is the favorite
+        onView(allOf (withId(R.id.list_neighbours), isDisplayed())).check(withItemCount(1));
+        // Perform a click on the neighbour and click on the favorite button again
+        onView(allOf (withId(R.id.list_neighbours), isDisplayed()))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, new ClickNeighbourViewAction()));
+        onView(withId(R.id.detail_favorite_button)).perform(click());
+        // Perform a click on back button again
+        onView(withId(R.id.detail_previous_button)).perform(click());
+        // Then : The list should be empty
+        onView(allOf (withId(R.id.list_neighbours), isDisplayed())).check(withItemCount(0));
     }
 }
