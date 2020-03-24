@@ -110,7 +110,8 @@
                 android:id="@+id/detail_about_neighbour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                app:contentPaddingRight="30sp">
 
                 <TextView
                     android:id="@+id/detail_about_title"
