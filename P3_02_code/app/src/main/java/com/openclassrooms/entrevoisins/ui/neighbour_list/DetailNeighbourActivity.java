@@ -14,6 +14,8 @@ import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
+import java.util.Objects;
+
 
 public class DetailNeighbourActivity extends AppCompatActivity {
 
@@ -48,7 +50,8 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         mPreviousButton = findViewById(R.id.detail_previous_button);
         mFavoriteButton = findViewById(R.id.detail_favorite_button);
 
-        mCurrentNeighbour = getIntent().getExtras().getParcelable("NEIGHBOUR");
+        mCurrentNeighbour = Objects.requireNonNull(getIntent().getExtras()).getParcelable("NEIGHBOUR");
+        assert mCurrentNeighbour != null;
         this.displayDetails(mCurrentNeighbour);
 
         mPreviousButton.setOnClickListener(new View.OnClickListener() {
