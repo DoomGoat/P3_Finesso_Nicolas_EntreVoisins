@@ -48,7 +48,7 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         mPreviousButton = findViewById(R.id.detail_previous_button);
         mFavoriteButton = findViewById(R.id.detail_favorite_button);
 
-        mCurrentNeighbour = Neighbour.getExtras(getIntent());
+        mCurrentNeighbour = getIntent().getExtras().getParcelable("NEIGHBOUR");
         this.displayDetails(mCurrentNeighbour);
 
         mPreviousButton.setOnClickListener(new View.OnClickListener() {

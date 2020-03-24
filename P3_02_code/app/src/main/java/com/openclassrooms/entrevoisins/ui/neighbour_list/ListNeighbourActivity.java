@@ -68,7 +68,7 @@ public class ListNeighbourActivity extends AppCompatActivity {
     public void onClickNeighbour(ClickNeighbourEvent event) {
 
         Intent detailActivityIntent = new Intent(ListNeighbourActivity.this, DetailNeighbourActivity.class);
-        event.neighbour.setExtras(event.neighbour, detailActivityIntent);
+        detailActivityIntent.putExtra("NEIGHBOUR", event.neighbour);
         startActivity(detailActivityIntent);
     }
 

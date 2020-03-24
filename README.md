@@ -17,11 +17,11 @@ Applications instructions :
 
 When open in the neighbour list view.
 - Click on the + button to add new neighbour
-- Press the trash icon next to his name to delete a neighbour	
+- Click on the trash icon next to his name to delete a neighbour	
 - Click on a neighbour to open his details
 - Click on favorite tab or swipe left to acces it
 
 When open in the detail view.
 - Click on the star button to add the neighbour in your favorite list
-- Click again on it to remove him from the list
+- Click on it again to remove him from the list
 - Click on the top left arrow to go back to the neighbour list

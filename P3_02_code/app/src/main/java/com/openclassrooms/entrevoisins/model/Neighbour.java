@@ -1,14 +1,14 @@
 package com.openclassrooms.entrevoisins.model;
 
-import android.content.Intent;
-import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import java.util.Objects;
 
 /**
  * Model object representing a Neighbour
  */
-public class Neighbour {
+public class Neighbour implements Parcelable {
 
     /** Identifier */
     private long id;
@@ -119,27 +119,42 @@ public class Neighbour {
         return Objects.hash(id);
     }
 
-    public void setExtras(Neighbour neighbour, Intent intent) {
-        Bundle extras = new Bundle();
-        extras.putLong("USER_ID", neighbour.getId());
-        extras.putString("USER_NAME", neighbour.getName());
-        extras.putString("USER_AVATAR", neighbour.getAvatarUrl());
-        extras.putString("USER_ADDRESS", neighbour.getAddress());
-        extras.putString("USER_PHONE", neighbour.getPhoneNumber());
-        extras.putString("USER_ABOUT", neighbour.getAboutMe());
-        extras.putBoolean("USER_FAVORITE", neighbour.getFavorite());
-        intent.putExtras(extras);
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    static public Neighbour getExtras(Intent intent) {
-        Bundle extras = intent.getExtras();
-        assert extras != null;
-        return new Neighbour(extras.getLong("USER_ID"),
-                extras.getString("USER_NAME"),
-                extras.getString("USER_AVATAR"),
-                extras.getString("USER_ADDRESS"),
-                extras.getString("USER_PHONE"),
-                extras.getString("USER_ABOUT"),
-                extras.getBoolean("USER_FAVORITE"));
+    @Override
+    public void writeToParcel(Parcel out, int flags) {
+
+        out.writeLong(id);
+        out.writeString(name);
+        out.writeString(avatarUrl);
+        out.writeString(address);
+        out.writeString(phoneNumber);
+        out.writeString(aboutMe);
+        out.writeInt(favorite ? 1 : 0);
+    }
+
+    public static final Parcelable.Creator<Neighbour> CREATOR
+            = new Parcelable.Creator<Neighbour>() {
+        public Neighbour createFromParcel(Parcel in) {
+            return new Neighbour(in);
+        }
+
+        public Neighbour[] newArray(int size) {
+            return new Neighbour[size];
+        }
+    };
+
+    public Neighbour(Parcel in){
+        this.id = in.readLong();
+        this.name = in.readString();
+        this.avatarUrl = in.readString();
+        this.address = in.readString();
+        this.phoneNumber = in.readString();
+        this.aboutMe = in.readString();
+        this.favorite = in.readInt() == 1;
     }
 }
